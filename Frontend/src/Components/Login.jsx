@@ -1,4 +1,69 @@
+import axios from "axios";
+import { useState } from "react";
+import { toast } from "react-toastify";
+
 const Login = () => {
+    const [userdata, setUserData] = useState({
+        email: "",
+        password: ""
+    });
+
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+
+        setUserData({
+            ...userdata,
+            [name]: value
+        })
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const { email, password } = userdata;
+
+        if (!email.trim() || !password.trim()) {
+            toast.error("Please fill out all the fields.", {
+                autoClose: 2000,
+                position: "top-center"
+            });
+            return;
+        }
+
+
+        try {
+            const response = await axios.post("http://localhost:3000/login",
+                userdata,
+                {
+                    withCredentials: true,
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }
+            )
+
+
+            if (response.data.success) {
+                toast.success(response.data.message, {
+                    autoClose: 2000,
+                    position: "top-center"
+                })
+            }
+
+            // clean the form
+            setUserData({
+                email: "",
+                password: ""
+            })
+        } catch (error) {
+            toast.error(error.message, {
+                autoClose: 2000,
+                position: "top-center"
+            })
+        }
+    }
+
+
     return (
         <div className="signup-container">
             <div className="signup-left">
@@ -18,11 +83,26 @@ const Login = () => {
             </div>
 
             <div className="signup-right">
-                <form className="signup-form">
+                <form className="signup-form" method="post" onSubmit={handleSubmit}>
                     <h2>Login</h2>
                     <br />
-                    <input type="email" placeholder="Email" required />
-                    <input type="password" placeholder="Password" required />
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        required
+                        onChange={handleChange}
+                        value={userdata.email}
+                    />
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        required
+                        onChange={handleChange}
+                        value={userdata.password}
+                    />
+
 
                     <button type="submit" className="submit-btn">Sign Up</button>
                 </form>
