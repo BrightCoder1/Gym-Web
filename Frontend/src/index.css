@@ -1106,3 +1106,122 @@ progress::-webkit-progress-value {
 }
 
 
+.contact-container {
+    width: 85%;
+    max-width: 950px;
+    margin: 0px auto;
+    padding-top: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.contact-date {
+    text-align: center;
+    color: #6c757d;
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+.contact-message {
+    background-color: #f0f4f8;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 25px;
+}
+
+.contact-name {
+    margin: 0 0 8px;
+    color: #2c3e50;
+    font-size: 18px;
+}
+
+.contact-email {
+    margin: 0 0 12px;
+    color: #34495e;
+    font-size: 14px;
+}
+
+.contact-text {
+    color: #333;
+    line-height: 1.6;
+    white-space: pre-line;
+}
+
+
+
+.trainer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    background: #f2f6fb;
+    padding-top: 6rem;
+}
+
+.trainer-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+}
+
+.trainer-card:hover {
+    transform: translateY(-4px);
+}
+
+.trainer-img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.trainer-info {
+    flex: 1;
+    margin-left: 15px;
+}
+
+.trainer-info h4 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.trainer-info p {
+    margin: 2px 0 0;
+    font-size: 13px;
+    color: #555;
+}
+
+.trainer-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.icon {
+    font-size: 16px;
+    color: #c1c6d0;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.icon:hover {
+    color: #007bff;
+}
+
+.icon-lg {
+    font-size: 20px;
+    color: #c1c6d0;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.icon-lg:hover {
+    color: #007bff;
+}
+
+

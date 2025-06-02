@@ -1,6 +1,6 @@
 const data = [
     { title: "REGISTERED MEMBERS", value: 150, color: "#009688", icon: "💪", href: "/members" },
-    { title: "NEW CONTACT", value: 10, color: "#f44336", icon: "🆕", href: "/signups" },
+    { title: "NEW CONTACT", value: 10, color: "#f44336", icon: "🆕", href: "/message" },
     { title: "CLASSES OFFERED", value: 25, color: "#2196F3", icon: "📋", href: "/classes" },
     { title: "TOTAL TRAINERS", value: 8, color: "#FF9800", icon: "🏋️‍♂️", href: "/trainers" },
     { title: "BOOKED CLASSES", value: 60, color: "#FFC107", icon: "📝", href: "/bookings" },

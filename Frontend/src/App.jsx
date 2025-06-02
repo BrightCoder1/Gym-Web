@@ -9,6 +9,8 @@ import Login from "./Components/Login";
 import Register from "./Components/Register";
 import Admin from "./Pages/Admin";
 import CustomerList from "./Components/CustomerList";
+import ContactMessages from "./Components/ContactMessage";
+import Trainer from "./Pages/Trainer";
 
 
 const App = () => {
@@ -27,6 +29,8 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/members" element={<CustomerList />} />
+          <Route path="/message" element={<ContactMessages />} />
+          <Route path="/trainers" element={<Trainer />} />
         </Routes>
         <Footer />
       </Router>
