@@ -6,6 +6,9 @@ import Services from "./Pages/Services";
 import Contact from "./Pages/Contact";
 import About from "./Pages/About";
 import Login from "./Components/Login";
+import Register from "./Components/Register";
+import Admin from "./Pages/Admin";
+import CustomerList from "./Components/CustomerList";
 
 
 const App = () => {
@@ -19,6 +22,11 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
+
+          {/* Admin Route Create */}
+          <Route path="/register" element={<Register />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/members" element={<CustomerList />} />
         </Routes>
         <Footer />
       </Router>
