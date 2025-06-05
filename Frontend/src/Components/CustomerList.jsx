@@ -31,7 +31,9 @@ const CustomerList = () => {
             <p className="breadcrumb">Dashboard / Customers’ List</p>
 
             <div className="top-bar">
-                <button className="new-customer">+ NEW CUSTOMER</button>
+                <button className="new-customer">
+                    <a className="anchorTag" href="/add/member">+ NEW CUSTOMER</a>
+                </button>
                 <input
                     type="text"
                     placeholder="🔍 Search..."

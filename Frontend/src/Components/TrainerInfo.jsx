@@ -61,37 +61,40 @@ const trainers = [
 
 const TrainerInfo = () => {
     return (
-        <div className="trainer-container">
-            {trainers
-                // Uncomment this line to show only gym trainers
-                // .filter(trainer => trainer.role.toLowerCase().includes("gym"))
-                .map((trainer, index) => (
-                    <div className="trainer-card" key={index}>
-                        <img src={trainer.image} alt={trainer.name} className="trainer-img" />
-                        <div className="trainer-info">
-                            <h4>{trainer.name}</h4>
-                            <p className={`trainer-role ${trainer.role.toLowerCase().includes("gym") ? "gym-role" : ""}`}>
-                                {trainer.role}
-                            </p>
-                            <p className="contact-numbers">
-                                📞 {trainer.phone}<br />
-                                🟢 WhatsApp: {trainer.whatsapp}
-                            </p>
+        <>
+            
+            <div className="trainer-container top2">
+                {trainers
+                    // Uncomment this line to show only gym trainers
+                    // .filter(trainer => trainer.role.toLowerCase().includes("gym"))
+                    .map((trainer, index) => (
+                        <div className="trainer-card" key={index}>
+                            {/* <img src={trainer.image} alt={trainer.name} className="trainer-img" /> */}
+                            <div className="trainer-info">
+                                <h4>{trainer.name}</h4>
+                                <p className={`trainer-role ${trainer.role.toLowerCase().includes("gym") ? "gym-role" : ""}`}>
+                                    {trainer.role}
+                                </p>
+                                <p className="contact-numbers">
+                                    📞 {trainer.phone}<br />
+                                    🟢 WhatsApp: {trainer.whatsapp}
+                                </p>
+                            </div>
+                            <div className="trainer-actions">
+                                <a href={`tel:${trainer.phone}`}>
+                                    <FaPhoneAlt className="icon-lg" title="Call" />
+                                </a>
+                                <a href={`mailto:${trainer.name.replace(" ", "").toLowerCase()}@example.com`}>
+                                    <FaEnvelope className="icon-lg" title="Email" />
+                                </a>
+                                <a href={`https://wa.me/${trainer.whatsapp.replace(/[^0-9]/g, '')}`} target="_blank" rel="noopener noreferrer">
+                                    <FaWhatsapp className="icon-lg" title="WhatsApp" />
+                                </a>
+                            </div>
                         </div>
-                        <div className="trainer-actions">
-                            <a href={`tel:${trainer.phone}`}>
-                                <FaPhoneAlt className="icon-lg" title="Call" />
-                            </a>
-                            <a href={`mailto:${trainer.name.replace(" ", "").toLowerCase()}@example.com`}>
-                                <FaEnvelope className="icon-lg" title="Email" />
-                            </a>
-                            <a href={`https://wa.me/${trainer.whatsapp.replace(/[^0-9]/g, '')}`} target="_blank" rel="noopener noreferrer">
-                                <FaWhatsapp className="icon-lg" title="WhatsApp" />
-                            </a>
-                        </div>
-                    </div>
-                ))}
-        </div>
+                    ))}
+            </div>
+        </>
     );
 };
 

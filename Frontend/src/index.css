@@ -1147,7 +1147,17 @@ progress::-webkit-progress-value {
     white-space: pre-line;
 }
 
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+}
 
+.center-h1 {
+    text-align: center;
+    padding-top: 5rem;
+}
 
 .trainer-container {
     display: grid;
@@ -1155,8 +1165,54 @@ progress::-webkit-progress-value {
     gap: 20px;
     padding: 20px;
     background: #f2f6fb;
-    padding-top: 6rem;
+    padding-top: 4rem;
 }
+
+.top {
+    padding-top: 5rem;
+}
+
+.top2 {
+    padding-top: 8rem;
+}
+
+.anchorTag{
+    color: #fff;
+    text-decoration: none;
+}
+
+.trainer-add {
+    position: absolute;
+    right: 2rem;
+    top: 6rem;
+    border: none;
+    background-color: 2px solid rgb(9, 141, 9);
+    color: #fff;
+}
+
+.ed {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+}
+
+.offer {
+    position: absolute;
+    right: 16px;
+    top: 10rem;
+    border: none;
+    padding: 6px;
+    border-radius: 6px;
+    color: #fff;
+    background-color: rgb(9, 141, 9);
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.offer:hover {
+    background-color: rgb(3, 88, 3);
+}
+
 
 .trainer-card {
     display: flex;
@@ -1224,4 +1280,19 @@ progress::-webkit-progress-value {
     color: #007bff;
 }
 
+.trainerPos {
+    position: relative;
 
+}
+
+.addTrainer {
+    position: absolute;
+    top: 4.6rem;
+    border: none;
+    background-color: rgb(9, 141, 9);
+    right: 3rem;
+    border-radius: 8px;
+    padding: 7px;
+    color: #fff;
+    text-decoration: none;
+}

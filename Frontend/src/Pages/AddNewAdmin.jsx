@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-const Register = () => {
+const AddNewAdmin = () => {
     const [userdata, setUserData] = useState({
         email: "",
         password: "",
@@ -42,7 +42,7 @@ const Register = () => {
         }
 
         try {
-            const response = await axios.post("http://localhost:3000/Register",
+            const response = await axios.post("http://localhost:3000/AddNewAdmin",
                 userdata,
                 {
                     withCredentials: true,
@@ -80,7 +80,7 @@ const Register = () => {
     return (
         <div className="signup-container">
             <div className="signup-left">
-                <h2>Only Admin Can Register.</h2>
+                <h2>Only Admin Can AddNewAdmin.</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed</p>
                 <div className="bottom-links">
                     <div className="lang-select">
@@ -154,4 +154,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default AddNewAdmin;

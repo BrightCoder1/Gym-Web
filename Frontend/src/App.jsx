@@ -11,6 +11,11 @@ import Admin from "./Pages/Admin";
 import CustomerList from "./Components/CustomerList";
 import ContactMessages from "./Components/ContactMessage";
 import Trainer from "./Pages/Trainer";
+import Booking from "./Pages/Booking";
+import Offered from "./Pages/Offered";
+import AddOfferForm from "./Pages/AddOffer";
+import AddTrainer from "./Pages/AddTrainer";
+import AddNewAdmin from "./Pages/AddNewAdmin";
 
 
 const App = () => {
@@ -26,11 +31,16 @@ const App = () => {
           <Route path="/login" element={<Login />} />
 
           {/* Admin Route Create */}
-          <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/members" element={<CustomerList />} />
           <Route path="/message" element={<ContactMessages />} />
           <Route path="/trainers" element={<Trainer />} />
+          <Route path="/bookings" element={<Booking />} />
+          <Route path="/classes" element={<Offered />} />
+          <Route path="/add/offer" element={<AddOfferForm />} />
+          <Route path="/add/trainer" element={<AddTrainer />} />
+          <Route path="/new/admin" element={<AddNewAdmin />} />
+          <Route path="/add/member" element={<Register />} />
         </Routes>
         <Footer />
       </Router>

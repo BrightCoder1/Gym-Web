@@ -5,6 +5,7 @@ const data = [
     { title: "TOTAL TRAINERS", value: 8, color: "#FF9800", icon: "🏋️‍♂️", href: "/trainers" },
     { title: "BOOKED CLASSES", value: 60, color: "#FFC107", icon: "📝", href: "/bookings" },
     { title: "MONTHLY REVENUE", value: "$12,500", color: "#673AB7", icon: "💰", href: "/revenue" },
+    { title: "Add New Admin", value: "", color: "#1b9c1e", icon: "👦", href: "/new/admin" },
 ];
 
 const Dashboard = () => {

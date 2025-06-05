@@ -3,7 +3,10 @@ import TrainerInfo from "../Components/TrainerInfo"
 const Trainer = () => {
     return (
         <>
-            <TrainerInfo />
+            <div className="trainerPos">
+                <a className='addTrainer' href="/add/trainer">Add Trainer</a>
+                <TrainerInfo />
+            </div>
         </>
     )
 }
