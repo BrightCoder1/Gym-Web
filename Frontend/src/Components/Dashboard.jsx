@@ -25,7 +25,7 @@ const Dashboard = () => {
                         </div>
                         <div className="card-content">
                             <p>{item.title}</p>
-                            <h3>{item.value}</h3>
+                            {/* <h3>{item.value}</h3> */}
                         </div>
                     </a>
                 ))}

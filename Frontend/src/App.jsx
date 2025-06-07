@@ -16,12 +16,13 @@ import Offered from "./Pages/Offered";
 import AddOfferForm from "./Pages/AddOffer";
 import AddTrainer from "./Pages/AddTrainer";
 import AddNewAdmin from "./Pages/AddNewAdmin";
-
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
   return (
     <>
       <Router>
+        <ToastContainer className="index" />
         <NavbarComponent />
         <Routes>
           <Route path="/" element={<Home />} />

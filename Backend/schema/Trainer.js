@@ -1,15 +1,12 @@
 import mongoose from "mongoose";
 
-const AdminSchema = new mongoose.Schema({
-    email: {
-        type: String,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
+
+const TrainerModel = new mongoose.Schema({
     name: {
+        type: String,
+        required: true,
+    },
+    email: {
         type: String,
         required: true
     },
@@ -17,12 +14,21 @@ const AdminSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    salary: {
+        type: String,
+        required: true
+    },
+    dateOfJoining: {
+        type: String,
+        required: true
+    },
     address: {
         type: String,
         required: true
     }
-});
+})
 
-const Admin = mongoose.model("Admin", AdminSchema);
 
-export default Admin;
+const Trainer = mongoose.model("Trainer", TrainerModel);
+
+export default Trainer;

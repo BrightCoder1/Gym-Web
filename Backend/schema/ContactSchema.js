@@ -12,6 +12,10 @@ const ContactSchema = mongoose.Schema({
     message:{
         type:String,
         required:true
+    },
+    dateSend:{
+        type:Date,
+        required:true
     }
 });
 

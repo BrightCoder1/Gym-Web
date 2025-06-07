@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { ToastContainer } from 'react-toastify';
 
 const Register = () => {
     const [userdata, setUserData] = useState({
@@ -33,16 +34,8 @@ const Register = () => {
             return;
         }
 
-        if (password !== confirmPassword) {
-            toast.error("Passwords do not match.", {
-                autoClose: 2000,
-                position: "top-center"
-            });
-            return;
-        }
-
         try {
-            const response = await axios.post("http://localhost:3000/Register",
+            const response = await axios.post("http://localhost:3000/add/member",
                 userdata,
                 {
                     withCredentials: true,
@@ -76,11 +69,12 @@ const Register = () => {
         }
     };
 
-    
+
     return (
         <div className="signup-container">
+            <ToastContainer className="index"/>
             <div className="signup-left">
-                <h2>Only Admin Can Register.</h2>
+                <h2>Only Admin Can Add Member.</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed</p>
                 <div className="bottom-links">
                     <div className="lang-select">
@@ -97,7 +91,7 @@ const Register = () => {
 
             <div className="signup-right">
                 <form className="signup-form" method="post" onSubmit={handleSubmit}>
-                    <h2>Add New Admin</h2>
+                    <h2>Add New Member</h2>
                     <br />
                     <input
                         type="email"
@@ -106,22 +100,6 @@ const Register = () => {
                         required
                         onChange={handleChange}
                         value={userdata.email}
-                    />
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                        required
-                        onChange={handleChange}
-                        value={userdata.password}
-                    />
-                    <input
-                        type="password"
-                        name="confirmPassword"
-                        placeholder="Confirm Password"
-                        required
-                        onChange={handleChange}
-                        value={userdata.confirmPassword}
                     />
                     <input
                         type="text"

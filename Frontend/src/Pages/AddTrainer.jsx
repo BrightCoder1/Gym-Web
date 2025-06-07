@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { ToastContainer } from 'react-toastify';
+
 
 const AddTrainer = () => {
     const [trainerData, setTrainerData] = useState({
@@ -33,11 +35,13 @@ const AddTrainer = () => {
         }
 
         try {
-            const response = await axios.post("http://localhost:3000/trainers", trainerData, {
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            });
+            const response = await axios.post("http://localhost:3000/add/trainer",
+                trainerData,
+                {
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                });
 
             if (response.data.success) {
                 toast.success("Trainer added successfully!", {
@@ -63,6 +67,7 @@ const AddTrainer = () => {
 
     return (
         <div className="signup-container">
+            <ToastContainer className="index" />
             <div className="signup-left">
                 <h2>Add New Trainer</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed</p>
@@ -80,7 +85,7 @@ const AddTrainer = () => {
             </div>
 
             <div className="signup-right">
-                <form className="signup-form" onSubmit={handleSubmit}>
+                <form className="signup-form" method="post" onSubmit={handleSubmit}>
                     <h2>Add New Trainer</h2>
                     <input
                         type="text"

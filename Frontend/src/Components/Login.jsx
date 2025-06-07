@@ -1,8 +1,13 @@
 import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { ToastContainer } from 'react-toastify';
+import { Link, useNavigate, Navigate } from "react-router-dom";
+
 
 const Login = () => {
+    const navigateTo = useNavigate();
+
     const [userdata, setUserData] = useState({
         email: "",
         password: ""
@@ -30,9 +35,9 @@ const Login = () => {
             return;
         }
 
-
         try {
-            const response = await axios.post("http://localhost:3000/login",
+            const response = await axios.post(
+                "http://localhost:3000/login", // change if needed
                 userdata,
                 {
                     withCredentials: true,
@@ -40,32 +45,35 @@ const Login = () => {
                         "Content-Type": "application/json"
                     }
                 }
-            )
-
+            );
 
             if (response.data.success) {
                 toast.success(response.data.message, {
                     autoClose: 2000,
                     position: "top-center"
-                })
+                });
+
+                setTimeout(() => {
+                    navigateTo("/admin");
+                }, 100); 
             }
 
-            // clean the form
-            setUserData({
-                email: "",
-                password: ""
-            })
+            setUserData({ email: "", password: "" });
         } catch (error) {
-            toast.error(error.message, {
-                autoClose: 2000,
-                position: "top-center"
-            })
+            toast.error(
+                error?.response?.data?.message || "Login failed. Try again.",
+                {
+                    autoClose: 2000,
+                    position: "top-center"
+                }
+            );
         }
-    }
+    };
 
 
     return (
         <div className="signup-container">
+            <ToastContainer className="index" />
             <div className="signup-left">
                 <h2>Only Admin Can login.</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed</p>

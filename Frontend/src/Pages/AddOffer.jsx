@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { ToastContainer } from 'react-toastify';
 
 const AddOfferForm = () => {
     const [offerData, setOfferData] = useState({
@@ -10,7 +11,7 @@ const AddOfferForm = () => {
         contactWhatsapp: "",
         trainer: "",
         email: "",
-        registrationStart: "",
+        registerStartDate: "",
         price: "",
         offerPrice: ""
     });
@@ -36,11 +37,13 @@ const AddOfferForm = () => {
         }
 
         try {
-            const response = await axios.post("http://localhost:3000/offer", offerData, {
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            });
+            const response = await axios.post("http://localhost:3000/add/offer",
+                offerData,
+                {
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                });
 
             if (response.data.success) {
                 toast.success("Offer added successfully!", {
@@ -54,7 +57,7 @@ const AddOfferForm = () => {
                     contactWhatsapp: "",
                     trainer: "",
                     email: "",
-                    registrationStart: "",
+                    registerStartDate: "",
                     price: "",
                     offerPrice: ""
                 });
@@ -69,6 +72,7 @@ const AddOfferForm = () => {
 
     return (
         <div className="signup-container">
+            <ToastContainer className="index" />
             <div className="signup-left">
                 <h2>Add New Offer For User.</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed</p>
@@ -86,7 +90,7 @@ const AddOfferForm = () => {
             </div>
 
             <div className="signup-right">
-                <form className="signup-form" onSubmit={handleSubmit}>
+                <form className="signup-form" method="post" onSubmit={handleSubmit}>
                     <h2>Add New Offer</h2>
                     <input
                         type="text"
@@ -134,10 +138,10 @@ const AddOfferForm = () => {
                     <span>Registration Start</span>
                     <input
                         type="date"
-                        name="registrationStart"
+                        name="registerStartDate"
                         placeholder="Registration Start"
                         onChange={handleChange}
-                        value={offerData.registrationStart}
+                        value={offerData.registerStartDate}
                     />
                     <input
                         type="number"

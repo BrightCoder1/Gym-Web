@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { ToastContainer } from 'react-toastify';
+
 
 const AddNewAdmin = () => {
     const [userdata, setUserData] = useState({
@@ -42,7 +44,8 @@ const AddNewAdmin = () => {
         }
 
         try {
-            const response = await axios.post("http://localhost:3000/AddNewAdmin",
+            const response = await axios.post("http://localhost:3000/new/admin"
+                ,
                 userdata,
                 {
                     withCredentials: true,
@@ -76,9 +79,10 @@ const AddNewAdmin = () => {
         }
     };
 
-    
+
     return (
         <div className="signup-container">
+            <ToastContainer className="index" />
             <div className="signup-left">
                 <h2>Only Admin Can AddNewAdmin.</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed</p>
