@@ -62,7 +62,6 @@ app.post("/contact", async (req, res) => {
         await transporter.sendMail(userMail);
 
         const datatest = await data.save();
-        console.log(datatest);
 
         res.status(200).json({
             success: true,
@@ -120,7 +119,6 @@ app.post("/add/member", async (req, res) => {
 app.get("/members", async (req, res) => {
     try {
         const data = await Member.find({});
-        console.log(data);
         res.status(200).json(data);
     } catch (error) {
         res.status(500).json({
@@ -163,12 +161,75 @@ app.post("/add/offer", async (req, res) => {
     }
 });
 
+
+//put for update data
+app.put('/edit/offer/:id', async (req, res) => {
+    const { id } = req.params;
+    console.log({ id });
+    const updateFields = req.body;
+
+    console.log(updateFields);
+
+    try {
+        const updatedOffer = await Offer.findByIdAndUpdate(id, updateFields, { new: true });
+        res.status(200).json({
+            success: true,
+            message: 'Offer updated successfully',
+            data: updatedOffer
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Error updating offer',
+            error: error.message
+        });
+    }
+});
+
+
+// DELETE offer by ID
+app.delete("/delete/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deletedOffer = await Offer.findByIdAndDelete(id);
+
+        if (!deletedOffer) {
+            return res.status(404).json({ success: false, message: "Offer not found" });
+        }
+
+        res.status(200).json({ success: true, message: "Offer deleted successfully" });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Error deleting offer',
+            error: error.message
+        });
+    }
+});
+
+
 app.get("/classes", async (req, res) => {
     try {
         const response = await Offer.find({});
-        console.log(response);
         res.status(200).json(response);
     } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: "Internal Server Error"
+        });
+    }
+});
+
+app.get("/classes/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const offer = await Offer.findById(id);
+        if (!offer) {
+            return res.status(404).json({ success: false, message: "Offer not found" });
+        }
+        res.status(200).json(offer);
+    } catch (error) {
+        console.error("Error fetching offer:", error);
         res.status(500).json({
             success: false,
             error: "Internal Server Error"
@@ -180,8 +241,6 @@ app.get("/classes", async (req, res) => {
 app.post("/add/trainer", async (req, res) => {
     try {
         const { name, email, phone, salary, dateOfJoining, address } = req.body;
-
-        // console.log({ name, email, phone, salary, dateOfJoining, address });
 
         const response = await Trainer.create({
             name, email, phone, salary, dateOfJoining, address
@@ -202,6 +261,64 @@ app.post("/add/trainer", async (req, res) => {
     }
 })
 
+app.put("/edit/trainer/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        console.log({ id });
+        const updateFields = req.body;
+
+        try {
+            const updateTrainer = await Trainer.findByIdAndUpdate(
+                id,
+                updateFields,
+                {
+                    new: true
+                }
+            );
+
+            res.status(200).json({
+                success: true,
+                message: "Update Successfully!",
+                data: updateTrainer
+            });
+
+        } catch (error) {
+            res.status(500).json({
+                success: false,
+                message: 'Error updating offer',
+                error: error.message
+            });
+        }
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: "Internal Server Error"
+        });
+    }
+})
+
+// Delete trainer by ID
+app.delete("/delete/trainer/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deletedTrainer = await Trainer.findByIdAndDelete(id);
+
+        if (!deletedTrainer) {
+            return res.status(404).json({ success: false, message: "Trainer not found" });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Trainer deleted successfully!"
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: "Internal Server Error"
+        });
+    }
+});
+
 
 app.get("/trainers", async (req, res) => {
     try {
@@ -217,12 +334,31 @@ app.get("/trainers", async (req, res) => {
 });
 
 
+app.get("/trainers/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const trainer = await Trainer.findById(id);
+
+        if (!trainer) {
+            return res.status(404).json({ success: false, message: "Offer not found" });
+
+        }
+
+        res.status(200).json(trainer);
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: "Internal Server Error"
+        })
+    }
+})
+
 
 // add admin
 app.post("/new/admin", async (req, res) => {
     try {
         const { email, password, name, phone, address } = req.body;
-        // console.log({ email, password, name, phone, address })
 
         const response = await Admin.create({
             email,
@@ -269,6 +405,27 @@ app.post("/login", async (req, res) => {
         return res.status(500).json({
             success: false,
             message: "Server error. Please try again."
+        });
+    }
+});
+
+
+// Express route
+app.get("/member/profile/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const memberData = await Member.findById(id); 
+        
+        if (!memberData) {
+            return res.status(404).json({ success: false, message: "Member not found" });
+        }
+
+        res.status(200).json({ success: true, data: memberData }); 
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Server error",
+            error: error.message
         });
     }
 });

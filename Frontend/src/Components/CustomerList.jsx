@@ -64,7 +64,11 @@ const CustomerList = () => {
                                 <td>{cust.phone}</td>
                                 <td>{cust.address}</td>
                                 <td className="actions">
-                                    <button title="View">↗️</button>
+                                    <button title="View">
+                                        <a href={`/member/profile/${cust._id}`}>
+                                            ↗️
+                                        </a>
+                                    </button>
                                     <button title="Edit">✏️</button>
                                     <button title="Delete">🗑️</button>
                                 </td>

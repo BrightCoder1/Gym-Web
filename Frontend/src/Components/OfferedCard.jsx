@@ -5,6 +5,8 @@ import { FaPhoneAlt, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
 const OfferedCard = () => {
     const [data, setData] = useState([]);
 
+
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -16,9 +18,20 @@ const OfferedCard = () => {
                 console.error("Error fetching offers:", error);
             }
         };
-
+        
         fetchData();
     }, []);
+
+    const handleDelete = async (id) => {
+        if (!window.confirm("Are you sure you want to delete this offer?")) return;
+
+        try {
+            await axios.delete(`http://localhost:3000/delete/${id}`);
+            setData(prevData => prevData.filter(offer => offer._id !== id));
+        } catch (error) {
+            console.error("Error deleting offer:", error);
+        }
+    };
 
     return (
         <div className="center">
@@ -40,8 +53,8 @@ const OfferedCard = () => {
                             <p className="trainer-role">Price: ₹{offer.price}</p>
                             <p className="trainer-role">Offer Price: ₹{offer.offerPrice}</p>
                             <div className="ed">
-                                <a href="#">Delete</a>
-                                <a href="#">Edit</a>
+                                <button className='dltbtn' onClick={() => handleDelete(offer._id)}>Delete</button>
+                                <a className='editbtn' href={`/edit/offer/${offer._id}`}>Edit</a>
                             </div>
                         </div>
                     </div>

@@ -17,6 +17,9 @@ import AddOfferForm from "./Pages/AddOffer";
 import AddTrainer from "./Pages/AddTrainer";
 import AddNewAdmin from "./Pages/AddNewAdmin";
 import { ToastContainer } from 'react-toastify';
+import EditOffer from "./Components/EditOffer";
+import EditTrainer from "./Components/EditTrainer";
+import MemberShow from "./Pages/MemberShow";
 
 const App = () => {
   return (
@@ -42,6 +45,12 @@ const App = () => {
           <Route path="/add/trainer" element={<AddTrainer />} />
           <Route path="/new/admin" element={<AddNewAdmin />} />
           <Route path="/add/member" element={<Register />} />
+          <Route path="/members/profile" element={<MemberShow />} />
+
+          {/* edit route */}
+          <Route path="/edit/offer/:id" element={<EditOffer />} />
+          <Route path="/edit/trainer/:id" element={<EditTrainer />} />
+          <Route path="/member/profile/:id" element={<MemberShow />} />
         </Routes>
         <Footer />
       </Router>
