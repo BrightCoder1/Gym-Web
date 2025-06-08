@@ -20,6 +20,7 @@ import { ToastContainer } from 'react-toastify';
 import EditOffer from "./Components/EditOffer";
 import EditTrainer from "./Components/EditTrainer";
 import MemberShow from "./Pages/MemberShow";
+import EditMember from "./Components/EditMember";
 
 const App = () => {
   return (
@@ -51,6 +52,7 @@ const App = () => {
           <Route path="/edit/offer/:id" element={<EditOffer />} />
           <Route path="/edit/trainer/:id" element={<EditTrainer />} />
           <Route path="/member/profile/:id" element={<MemberShow />} />
+          <Route path="/edit/member/:id" element={< EditMember />} />
         </Routes>
         <Footer />
       </Router>

@@ -65,11 +65,11 @@ const CustomerList = () => {
                                 <td>{cust.address}</td>
                                 <td className="actions">
                                     <button title="View">
-                                        <a href={`/member/profile/${cust._id}`}>
+                                        <a style={{ textDecoration: "none" }} href={`/member/profile/${cust._id}`}>
                                             ↗️
                                         </a>
                                     </button>
-                                    <button title="Edit">✏️</button>
+                                    <a style={{textDecoration:"none"}} href={`/edit/member/${cust._id}`} title="Edit">✏️</a>
                                     <button title="Delete">🗑️</button>
                                 </td>
                             </tr>

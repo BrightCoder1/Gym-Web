@@ -414,13 +414,13 @@ app.post("/login", async (req, res) => {
 app.get("/member/profile/:id", async (req, res) => {
     try {
         const { id } = req.params;
-        const memberData = await Member.findById(id); 
-        
+        const memberData = await Member.findById(id);
+
         if (!memberData) {
             return res.status(404).json({ success: false, message: "Member not found" });
         }
 
-        res.status(200).json({ success: true, data: memberData }); 
+        res.status(200).json({ success: true, data: memberData });
     } catch (error) {
         res.status(500).json({
             success: false,
@@ -430,6 +430,58 @@ app.get("/member/profile/:id", async (req, res) => {
     }
 });
 
+
+app.get("/member/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const member = await Member.findById(id);
+
+        if (!member) {
+            return res.status(404).json({
+                success: false,
+                message: "Member not found"
+            });
+        }
+
+        res.status(200).json(member);
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Server error",
+            error: error.message
+        });
+    }
+});
+
+
+
+app.put("/edit/member/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const updateData = req.body;
+
+        const updatedMember = await Member.findByIdAndUpdate(id, updateData, { new: true });
+
+        if (!updatedMember) {
+            return res.status(404).json({
+                success: false,
+                message: "Member not found"
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Member updated successfully!",
+            data: updatedMember
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Server error",
+            error: error.message
+        });
+    }
+});
 
 
 export default app;
