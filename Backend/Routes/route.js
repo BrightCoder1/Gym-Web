@@ -27,6 +27,4 @@ router.get("/member/profile/:id", MemberProfile);
 router.get("/member/:id",MemberGet);
 router.put("/edit/member/:id", MemberEdit);
 
-
-
 export default router;

@@ -2,6 +2,7 @@ import express from "express";
 import dbConnection from "./db/dbConnection.js";
 import cors from "cors";
 import router from "./Routes/route.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
@@ -12,8 +13,8 @@ app.use(cors({
     origin: ["http://localhost:5173"],
     credentials: true
 }));
-
-app.use("/",router);
+app.use(cookieParser());
+app.use("/", router);
 
 
 export default app;

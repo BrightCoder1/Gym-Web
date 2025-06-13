@@ -10,21 +10,33 @@ export const AdminController = async (req, res) => {
             name,
             phone,
             address
-        })
-        await response.save();
+        });
+
+        // Generate Token
+        const token = await response.generateToken();
+        console.log("Token", token);
+
+        // Set cookie
+        res.cookie("token", token, {
+            httpOnly: true,
+            maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+            secure: process.env.NODE_ENV === "production", // only secure in production
+            sameSite: "strict",
+        });
 
         res.status(200).json({
             success: true,
-            message: "Add new Admin Successfully!"
-        })
+            message: "Added new Admin successfully!",
+        });
 
     } catch (error) {
+        console.error("Admin Registration Error:", error);
         res.status(500).json({
             success: false,
             error: "Internal Server Error"
         });
     }
-}
+};
 
 
 export const LoginController = async (req, res) => {

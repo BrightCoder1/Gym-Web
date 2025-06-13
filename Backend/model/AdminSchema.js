@@ -34,17 +34,16 @@ const AdminSchema = new mongoose.Schema({
     ]
 });
 
-
 AdminSchema.methods.generateToken = async function () {
-    const token = jwt.sign({
-        _id: this._id.toString(),
-    },
+    const token = jwt.sign(
+        { _id: this._id.toString() },
         process.env.KEY
-    )
+    );
     this.tokens = this.tokens.concat({ token });
     await this.save();
     return token;
-}
+};
+
 
 const Admin = mongoose.model("Admin", AdminSchema);
 
