@@ -1,4 +1,4 @@
-import express, { text } from "express";
+import express from "express";
 import dbConnection from "./db/dbConnection.js";
 import cors from "cors";
 import Contact from "./schema/ContactSchema.js";
