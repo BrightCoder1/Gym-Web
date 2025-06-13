@@ -1,4 +1,4 @@
-import Offer from "../schema/AddOffer.js";
+import Offer from "../model/AddOffer.js";
 
 export const AddOfferController = async (req, res) => {
     try {

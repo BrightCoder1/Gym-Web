@@ -1,4 +1,4 @@
-import Admin from "../schema/AdminSchema.js";
+import Admin from "../model/AdminSchema.js";
 
 export const AdminController = async (req, res) => {
     try {

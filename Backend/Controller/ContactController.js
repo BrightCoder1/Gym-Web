@@ -1,4 +1,4 @@
-import Contact from "../schema/ContactSchema.js";
+import Contact from "../model/ContactSchema.js";
 
 export const ContactController =  async (req, res) => {
     try {

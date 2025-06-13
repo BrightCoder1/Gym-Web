@@ -1,4 +1,4 @@
-import Trainer from "../schema/Trainer.js";
+import Trainer from "../model/Trainer.js";
 
 export const TrainerController = async (req, res) => {
     try {

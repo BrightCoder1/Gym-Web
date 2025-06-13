@@ -1,5 +1,5 @@
-import Contact from "../schema/ContactSchema.js";
-import Member from "../schema/Member.js";
+import Contact from "../model/ContactSchema.js";
+import Member from "../model/Member.js";
 
 
 export const MemberController = async (req, res) => {
