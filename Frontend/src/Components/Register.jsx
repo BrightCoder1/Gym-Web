@@ -8,8 +8,6 @@ const Register = () => {
         email: "",
         password: "",
         name: "",
-        phone: "",
-        confirmPassword: "",
         address: ""
     });
 
@@ -24,9 +22,9 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { email, password, name, phone, confirmPassword, address } = userdata;
+        const { email, name, phone, address } = userdata;
 
-        if (!email.trim() || !password.trim() || !name.trim() || !phone.trim() || !confirmPassword.trim() || !address.trim()) {
+        if (!email.trim() || !name.trim() || !phone.trim() || !address.trim()) {
             toast.error("Please fill out all the fields.", {
                 autoClose: 2000,
                 position: "top-center"
@@ -55,10 +53,8 @@ const Register = () => {
             // clean the form
             setUserData({
                 email: "",
-                password: "",
                 name: "",
                 phone: "",
-                confirmPassword: "",
                 address: ""
             });
         } catch (error) {
