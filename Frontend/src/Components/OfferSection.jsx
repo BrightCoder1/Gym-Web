@@ -44,6 +44,7 @@ const offers = [
 ];
 
 function OfferSection() {
+    
     return (
         <div className="offer-container">
             <h2 className="offer-title">WHAT WE CAN OFFER</h2>

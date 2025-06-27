@@ -10,7 +10,6 @@ const ContactPage = () => {
     message: ""
   })
 
-  // onchange function for change the value
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,6 +43,8 @@ const ContactPage = () => {
           },
         }
       )
+      
+      console.log("Response:", response);
 
       if (response.data.success) {
         toast.success(response.data.message, {
@@ -59,6 +60,7 @@ const ContactPage = () => {
       })
 
     } catch (error) {
+      console.log(error);
       toast.error(error.message, {
         autoClose: 2000,
         position: "top-center"

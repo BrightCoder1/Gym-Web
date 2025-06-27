@@ -1,6 +1,9 @@
 import Contact from "../model/ContactSchema.js";
+import dotenv from "dotenv";
+import nodemailer from "nodemailer";
+dotenv.config();
 
-export const ContactController =  async (req, res) => {
+export const ContactController = async (req, res) => {
     try {
         const { name, email, message } = req.body;
         const data = await Contact({
@@ -18,7 +21,6 @@ export const ContactController =  async (req, res) => {
             }
         });
 
-        // Email to Admin
         const adminMail = {
             from: email,
             to: process.env.EMAIL,
@@ -26,7 +28,6 @@ export const ContactController =  async (req, res) => {
             text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
         };
 
-        // Confirmation email to user
         const userMail = {
             from: process.env.EMAIL,
             to: email,
@@ -34,11 +35,11 @@ export const ContactController =  async (req, res) => {
             text: `Hi ${name},\n\nThanks for contacting us! We've received your message and our team will respond soon.\n\n- Gym Trainer`
         };
 
-        // Send both emails
         await transporter.sendMail(adminMail);
         await transporter.sendMail(userMail);
 
         const datatest = await data.save();
+        console.log("dataset", datatest)
 
         res.status(200).json({
             success: true,

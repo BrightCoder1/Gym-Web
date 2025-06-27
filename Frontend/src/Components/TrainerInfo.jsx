@@ -44,8 +44,8 @@ const TrainerInfo = () => {
 
     return (
         <>
+            <ToastContainer className="index" />
             <div className="trainer-container top2">
-                <ToastContainer className="index" />
                 {trainers.map((trainer, index) => (
                     <div className="trainer-card" key={index}>
                         <div className="trainer-info">

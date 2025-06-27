@@ -1,4 +1,5 @@
 import Admin from "../model/AdminSchema.js";
+import jwt from "jsonwebtoken";
 
 export const AdminController = async (req, res) => {
     try {
@@ -12,21 +13,20 @@ export const AdminController = async (req, res) => {
             address
         });
 
-        // Generate Token
         const token = await response.generateToken();
         console.log("Token", token);
 
-        // Set cookie
         res.cookie("token", token, {
             httpOnly: true,
-            maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-            secure: process.env.NODE_ENV === "production", // only secure in production
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+            secure: process.env.NODE_ENV === "production",
             sameSite: "strict",
         });
 
         res.status(200).json({
             success: true,
             message: "Added new Admin successfully!",
+            token
         });
 
     } catch (error) {
@@ -52,10 +52,24 @@ export const LoginController = async (req, res) => {
             });
         }
 
+        const token = jwt.sign(
+            { _id: user._id, email: user.email },
+            process.env.KEY,
+            { expiresIn: "1d" }
+        )
+        console.log(token);
+
+        res.cookie("token", token, {
+            httpOnly: true,
+            maxAge: 24 * 60 * 60 * 1000
+        })
+
         return res.status(200).json({
             success: true,
-            message: "User logged in successfully!"
+            message: "User logged in successfully!",
+            token,
         });
+        
     } catch (error) {
         console.error("Login error:", error);
         return res.status(500).json({
@@ -64,3 +78,4 @@ export const LoginController = async (req, res) => {
         });
     }
 }
+

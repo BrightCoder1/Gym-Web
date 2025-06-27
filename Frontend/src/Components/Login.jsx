@@ -13,15 +13,14 @@ const Login = () => {
         password: ""
     });
 
-
     const handleChange = (e) => {
         const { name, value } = e.target;
 
         setUserData({
             ...userdata,
             [name]: value
-        })
-    }
+        });
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -34,10 +33,9 @@ const Login = () => {
             });
             return;
         }
-
         try {
             const response = await axios.post(
-                "http://localhost:3000/login", // change if needed
+                "http://localhost:3000/login",
                 userdata,
                 {
                     withCredentials: true,
@@ -53,11 +51,10 @@ const Login = () => {
                     position: "top-center"
                 });
 
-                setTimeout(() => {
-                    navigateTo("/admin");
-                }, 100); 
+                navigateTo("/admin");
+            } else {
+                toast.error(response.data.message);
             }
-
             setUserData({ email: "", password: "" });
         } catch (error) {
             toast.error(
@@ -69,7 +66,6 @@ const Login = () => {
             );
         }
     };
-
 
     return (
         <div className="signup-container">

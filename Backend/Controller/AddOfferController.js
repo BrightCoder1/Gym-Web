@@ -2,13 +2,13 @@ import Offer from "../model/AddOffer.js";
 
 export const AddOfferController = async (req, res) => {
     try {
-        const { offerName, lastDate, contactCall, contactWhatsrouter, registerStartDate, trainer, email, price, offerPrice } = req.body;
+        const { offerName, lastDate, contactCall, contactWhatsapp, registerStartDate, trainer, email, price, offerPrice } = req.body;
 
         const response = new Offer({
             offerName,
             lastDate,
             contactCall,
-            contactWhatsrouter,
+            contactWhatsapp,
             registerStartDate,
             trainer,
             email,

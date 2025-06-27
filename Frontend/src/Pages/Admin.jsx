@@ -1,6 +1,6 @@
-import Dashboard from "../Components/Dashboard"
+import Dashboard from "../Components/Dashboard";
 
-const Admin = () => {
+const Admin = () => { 
     return (
         <>
             <Dashboard />
