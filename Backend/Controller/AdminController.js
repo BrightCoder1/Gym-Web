@@ -69,7 +69,7 @@ export const LoginController = async (req, res) => {
             message: "User logged in successfully!",
             token,
         });
-        
+
     } catch (error) {
         console.error("Login error:", error);
         return res.status(500).json({
@@ -77,5 +77,15 @@ export const LoginController = async (req, res) => {
             message: "Server error. Please try again."
         });
     }
+}
+
+
+export const AdminLogin = async (req, res) => {
+    const user = req.user;
+
+    res.status(200).json({
+        success: true,
+        user
+    })
 }
 

@@ -1,7 +1,8 @@
+// App.jsx
 import Footer from "./Components/Footer";
 import NavbarComponent from "./Components/NavbarComponent";
-import Home from "./Pages/Home"
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./Pages/Home";
+import { Routes, Route } from "react-router-dom";
 import Services from "./Pages/Services";
 import Contact from "./Pages/Contact";
 import About from "./Pages/About";
@@ -21,43 +22,102 @@ import EditOffer from "./Components/EditOffer";
 import EditTrainer from "./Components/EditTrainer";
 import MemberShow from "./Pages/MemberShow";
 import EditMember from "./Components/EditMember";
+import UserProtectWrapper from "./Pages/UserProtectWrapper";
 
 const App = () => {
   return (
     <>
-      <Router>
-        <ToastContainer className="index" />
-        <NavbarComponent />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/login" element={<Login />} />
+      <ToastContainer className="4index" />
+      <NavbarComponent />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/login" element={<Login />} />
 
-          {/* Admin Route Create */}
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/members" element={<CustomerList />} />
-          <Route path="/message" element={<ContactMessages />} />
-          <Route path="/trainers" element={<Trainer />} />
-          <Route path="/bookings" element={<Booking />} />
-          <Route path="/classes" element={<Offered />} />
-          <Route path="/add/offer" element={<AddOfferForm />} />
-          <Route path="/add/trainer" element={<AddTrainer />} />
-          <Route path="/new/admin" element={<AddNewAdmin />} />
-          <Route path="/add/member" element={<Register />} />
-          <Route path="/members/profile" element={<MemberShow />} />
+        {/* Admin Routes */}
+        <Route path="/admin" element={
+          <UserProtectWrapper>
+            <Admin />
+          </UserProtectWrapper>
+        } />
+        <Route path="/members" element={
+          <UserProtectWrapper>
+            <CustomerList />
+          </UserProtectWrapper>
+        } />
+        <Route path="/message" element={
+          <UserProtectWrapper>
+            <ContactMessages />
+          </UserProtectWrapper>
+        } />
+        <Route path="/trainers" element={
+          <UserProtectWrapper>
+            <Trainer />
+          </UserProtectWrapper>
+        } />
+        <Route path="/bookings" element={
+          <UserProtectWrapper>
+            <Booking />
+          </UserProtectWrapper>
+        } />
+        <Route path="/classes" element={
+          <UserProtectWrapper>
+            <Offered />
+          </UserProtectWrapper>
+        } />
+        <Route path="/add/offer" element={
+          <UserProtectWrapper>
+            <AddOfferForm />
+          </UserProtectWrapper>
+        } />
+        <Route path="/add/trainer" element={
+          <UserProtectWrapper>
+            <AddTrainer />
+          </UserProtectWrapper>
+        } />
+        <Route path="/new/admin" element={
+          <UserProtectWrapper>
+            <AddNewAdmin />
+          </UserProtectWrapper>
+        } />
+        <Route path="/add/member" element={
+          <UserProtectWrapper>
+            <Register />
+          </UserProtectWrapper>
+        } />
+        <Route path="/members/profile" element={
+          <UserProtectWrapper>
+            <MemberShow />
+          </UserProtectWrapper>
+        } />
 
-          {/* edit route */}
-          <Route path="/edit/offer/:id" element={<EditOffer />} />
-          <Route path="/edit/trainer/:id" element={<EditTrainer />} />
-          <Route path="/member/profile/:id" element={<MemberShow />} />
-          <Route path="/edit/member/:id" element={< EditMember />} />
-        </Routes>
-        <Footer />
-      </Router>
+        {/* Edit Routes */}
+        <Route path="/edit/offer/:id" element={
+          <UserProtectWrapper>
+            <EditOffer />
+          </UserProtectWrapper>
+        } />
+        <Route path="/edit/trainer/:id" element={
+          <UserProtectWrapper>
+            <EditTrainer />
+          </UserProtectWrapper>
+        } />
+        <Route path="/member/profile/:id" element={
+          <UserProtectWrapper>
+            <MemberShow />
+          </UserProtectWrapper>
+        } />
+        <Route path="/edit/member/:id" element={
+          <UserProtectWrapper>
+            <EditMember />
+          </UserProtectWrapper>
+        } />
+      </Routes>
+      <Footer />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

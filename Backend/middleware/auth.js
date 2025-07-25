@@ -5,17 +5,17 @@ dotenv.config();
 
 export const auth = async (req, res, next) => {
     try {
-        const token = req.cookies.token;
+        const token = req.cookies.token || req.headers.authorization?.split(" ")[1];
 
         if (!token) {
             return res.status(401).json({ message: "Unauthorized: No token provided" });
         }
 
-        const decoded = jwt.verify(token, process.env.KEY).selct("-password");
-        const user = await Admin.findById(decoded._id);
+        const decoded = jwt.verify(token, process.env.KEY);
+        const user = await Admin.findById(decoded._id).select("-password");
 
         if (!user) {
-            return res.status(401).json({ message: "Unauthorized: User (User Not Found)." });
+            return res.status(401).json({ message: "Unauthorized: User not found" });
         }
 
         req.user = user;
@@ -25,12 +25,3 @@ export const auth = async (req, res, next) => {
     }
 };
 
-
-
-// Controller user is Authenticated or not
-export const AuthCheck = (req, res) => {
-    req.json({
-        success: true,
-        user: req.user
-    })
-}

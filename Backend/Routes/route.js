@@ -3,12 +3,12 @@ import { ContactController } from "../Controller/ContactController.js";
 import { AddMember, GetMember, MemberController, MemberEdit, MemberGet, MemberProfile } from "../Controller/MemberController.js";
 import { AddOfferController, DeleteOffer, EditOffer, OfferFind, OfferFindByID } from "../Controller/AddOfferController.js";
 import { DeleteTrainer, GetTrainer, GetTrainerById, TrainerController, UpdateTrainer } from "../Controller/TrainerController.js";
-import { AdminController, LoginController } from "../Controller/AdminController.js";
-import { AdminLogin } from "../Controller/AdminLogin.js";
+import { AdminController, AdminLogin, LoginController } from "../Controller/AdminController.js";
+import { auth } from "../middleware/auth.js";
 
 const router = express.Router();
 router.post("/login", LoginController);
-router.get("/admin", AdminLogin);
+router.get("/admin", auth, AdminLogin);
 router.post("/contact", ContactController);
 router.get("/message", MemberController);
 router.post("/add/member", AddMember);

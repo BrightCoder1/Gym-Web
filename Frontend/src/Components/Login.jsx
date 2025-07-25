@@ -46,11 +46,14 @@ const Login = () => {
             );
 
             if (response.data.success) {
+                const data = response.data;
+                localStorage.setItem('token', data.token)
+
                 toast.success(response.data.message, {
                     autoClose: 2000,
                     position: "top-center"
                 });
-
+                
                 navigateTo("/admin");
             } else {
                 toast.error(response.data.message);
