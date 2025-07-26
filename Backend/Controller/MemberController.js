@@ -120,3 +120,25 @@ export const MemberEdit = async (req, res) => {
         });
     }
 }
+
+export const MemberDelete = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deletedMember = await Member.findByIdAndDelete(id);
+
+        if (!deletedMember) {
+            return res.status(404).json({ success: false, message: "Member not found" });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Member deleted successfully!"
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Server error",
+            error: error.message
+        });
+    }
+};

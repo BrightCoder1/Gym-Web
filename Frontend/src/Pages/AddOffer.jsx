@@ -37,11 +37,13 @@ const AddOfferForm = () => {
         }
 
         try {
+            const token = localStorage.getItem('token');
             const response = await axios.post("http://localhost:3000/add/offer",
                 offerData,
                 {
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
                     }
                 });
 

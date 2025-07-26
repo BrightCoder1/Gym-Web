@@ -1,14 +1,10 @@
 import axios from "axios";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import { ToastContainer } from 'react-toastify';
-
+import { toast, ToastContainer } from "react-toastify";
 
 const EditTrainer = () => {
     const { id } = useParams();
-    console.log({ id });
     const [trainerData, setTrainerData] = useState({
         name: "",
         email: "",
@@ -21,18 +17,15 @@ const EditTrainer = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/trainers/${id}`,
-                    {
-                        withCredentials:true
-                    }
-                );
-
-                console.log("response",response);
+                const response = await axios.get(`http://localhost:3000/trainers/${id}`, {
+                    withCredentials: true
+                });
                 setTrainerData(response.data);
             } catch (error) {
-                console.log("Error fetching offer:", error);
+                console.log("Error fetching trainer:", error);
+                toast.error("Failed to fetch trainer data.");
             }
-        }
+        };
 
         fetchData();
     }, [id]);
@@ -48,21 +41,25 @@ const EditTrainer = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.put(`http://localhost:3000/edit/trainer/${id}`,
+            const response = await axios.put(
+                `http://localhost:3000/edit/trainer/${id}`,
                 trainerData,
                 {
                     headers: {
                         "Content-Type": "application/json"
-                    }
-                });
+                    },
+                    withCredentials: true // ✅ required for sending cookies
+                }
+            );
 
             if (response.data.success) {
-                toast.success("Trainer added successfully!", {
+                toast.success("Trainer updated successfully!", {
                     autoClose: 2000,
                     position: "top-center"
                 });
             }
         } catch (error) {
+            console.error(error);
             toast.error("Error submitting the form.", {
                 autoClose: 2000,
                 position: "top-center"
@@ -74,24 +71,13 @@ const EditTrainer = () => {
         <div className="signup-container">
             <ToastContainer className="index" />
             <div className="signup-left">
-                <h2>Add New Trainer</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed</p>
-                <div className="bottom-links">
-                    <div className="lang-select">
-                        <img src="https://flagcdn.com/w40/us.png" alt="US Flag" />
-                        <span>English</span>
-                    </div>
-                    <div className="footer-links">
-                        <a href="#">Terms</a>
-                        <a href="#">Plans</a>
-                        <a href="#">Contact Us</a>
-                    </div>
-                </div>
+                <h2>Edit Trainer</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
             </div>
 
             <div className="signup-right">
                 <form className="signup-form" method="post" onSubmit={handleSubmit}>
-                    <h2>Add New Trainer</h2>
+                    <h2>Edit Trainer</h2>
                     <input
                         type="text"
                         name="name"
@@ -133,7 +119,7 @@ const EditTrainer = () => {
                         onChange={handleChange}
                         value={trainerData.address}
                     ></textarea>
-                    <button type="submit" className="submit-btn">Add Trainer</button>
+                    <button type="submit" className="submit-btn">Update Trainer</button>
                 </form>
             </div>
         </div>

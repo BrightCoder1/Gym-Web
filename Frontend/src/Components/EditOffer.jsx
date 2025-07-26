@@ -5,7 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 
 const EditOffer = () => {
     const { id } = useParams();
-    console.log({id});
+    console.log({ id });
     const [offerData, setOfferData] = useState({
         offerName: "",
         lastDate: "",
@@ -21,12 +21,16 @@ const EditOffer = () => {
     useEffect(() => {
         const fetchOfferData = async () => {
             try {
+                const token = localStorage.getItem('token');
                 const response = await axios.get(`http://localhost:3000/classes/${id}`, {
                     withCredentials: true,
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
                 });
-                
-                console.log( "response give:",response);
-                setOfferData(response.data); 
+
+                console.log("response give:", response);
+                setOfferData(response.data);
             } catch (error) {
                 console.error("Error fetching offer:", error);
                 toast.error(error);
@@ -47,9 +51,11 @@ const EditOffer = () => {
         e.preventDefault();
 
         try {
+            const token = localStorage.getItem('token');
             const response = await axios.put(`http://localhost:3000/edit/offer/${id}`, offerData, {
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`
                 }
             });
 

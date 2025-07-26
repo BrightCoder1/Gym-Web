@@ -35,14 +35,20 @@ const AddTrainer = () => {
         }
 
         try {
-            const response = await axios.post("http://localhost:3000/add/trainer",
+            const token = localStorage.getItem('token'); 
+
+            const response = await axios.post(
+                "http://localhost:3000/add/trainer",
                 trainerData,
                 {
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`, 
                     }
-                });
+                }
+            );
 
+            console.log(response);
             if (response.data.success) {
                 toast.success("Trainer added successfully!", {
                     autoClose: 2000,

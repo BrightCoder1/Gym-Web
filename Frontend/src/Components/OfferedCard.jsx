@@ -10,15 +10,19 @@ const OfferedCard = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                const token = localStorage.getItem('token');
                 const response = await axios.get("http://localhost:3000/classes", {
                     withCredentials: true,
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
                 });
                 setData(response.data);
             } catch (error) {
                 console.error("Error fetching offers:", error);
             }
         };
-        
+
         fetchData();
     }, []);
 
@@ -26,7 +30,13 @@ const OfferedCard = () => {
         if (!window.confirm("Are you sure you want to delete this offer?")) return;
 
         try {
-            await axios.delete(`http://localhost:3000/delete/${id}`);
+            const token = localStorage.getItem('token');
+            await axios.delete(`http://localhost:3000/delete/${id}`, {
+                withCredentials: true,
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
             setData(prevData => prevData.filter(offer => offer._id !== id));
         } catch (error) {
             console.error("Error deleting offer:", error);

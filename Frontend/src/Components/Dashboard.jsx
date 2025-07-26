@@ -30,6 +30,8 @@ const Dashboard = () => {
                     </a>
                 ))}
             </div>
+            <br />
+            {/* <button style={{backgroundColor:"#69bf34", border: "none", padding :"10px 5px", borderRadius:"10px"}} className="btn-logout">Logout</button> */}
         </div>
     );
 };

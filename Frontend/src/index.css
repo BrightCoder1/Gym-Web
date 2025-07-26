@@ -2,6 +2,15 @@
     z-index: 9999999999999999999999999999 !important;
 }
 
+.btn-logout {
+    color: #ffffff;
+    transition: 0.3s;
+}
+
+.btn-logout:hover {
+    background-color: #4d7f2c !important;
+}
+
 .bg-dark {
     padding: 15px !important;
     position: fixed !important;
@@ -1319,7 +1328,7 @@ progress::-webkit-progress-value {
 }
 
 
-.container-member{
+.container-member {
     width: 100%;
     display: flex;
     justify-content: center;

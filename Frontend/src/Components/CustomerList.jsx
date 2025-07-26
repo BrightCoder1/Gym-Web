@@ -8,8 +8,12 @@ const CustomerList = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                const token = localStorage.getItem('token');
                 const res = await axios.get("http://localhost:3000/members", {
                     withCredentials: true,
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
                 });
                 setCustomersData(res.data);
             } catch (error) {
@@ -24,6 +28,24 @@ const CustomerList = () => {
         cust.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         cust.email.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+    const DeleteCustomer = async (id) => {
+        try {
+            const token = localStorage.getItem('token');
+            await axios.delete(`http://localhost:3000/member/delete/${id}`, {
+                withCredentials: true,
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+
+            setCustomersData(prevData => prevData.filter(cust => cust._id !== id));
+
+        } catch (error) {
+            console.error("Error deleting offer:", error);
+        }
+    }
 
     return (
         <div className="customer-container">
@@ -69,8 +91,8 @@ const CustomerList = () => {
                                             ↗️
                                         </a>
                                     </button>
-                                    <a style={{textDecoration:"none"}} href={`/edit/member/${cust._id}`} title="Edit">✏️</a>
-                                    <button title="Delete">🗑️</button>
+                                    <a style={{ textDecoration: "none" }} href={`/edit/member/${cust._id}`} title="Edit">✏️</a>
+                                    <button title="Delete" onClick={() => DeleteCustomer(cust._id)}>🗑️</button>
                                 </td>
                             </tr>
                         ))

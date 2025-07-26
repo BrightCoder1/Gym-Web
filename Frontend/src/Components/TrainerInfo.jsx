@@ -9,7 +9,12 @@ const TrainerInfo = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://localhost:3000/trainers");
+                const token = localStorage.getItem('token');
+                const response = await axios.get("http://localhost:3000/trainers", {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
                 setTrainers(response.data);
             } catch (error) {
                 toast.error("Error fetching trainers.", {
@@ -26,8 +31,13 @@ const TrainerInfo = () => {
         if (!window.confirm("Are you sure you want to delete this trainer?")) return;
 
         try {
-            await axios.delete(`http://localhost:3000/delete/trainer/${id}`);
-            setTrainers(prevData => prevData.filter(trainer => trainer._id !== id));
+            const token = localStorage.getItem('token');
+
+            await axios.delete(`http://localhost:3000/delete/trainer/${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
             toast.success("Trainer deleted successfully!", {
                 autoClose: 2000,
                 position: "top-center"

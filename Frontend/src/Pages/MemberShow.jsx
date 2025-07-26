@@ -1,17 +1,22 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"; 
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 const MemberShow = () => {
-    const { id } = useParams(); 
+    const { id } = useParams();
     const [member, setMember] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchMember = async () => {
             try {
-                const res = await axios.get(`http://localhost:3000/member/profile/${id}`);
-                setMember(res.data.data); 
+                const token = localStorage.getItem('token');
+                const res = await axios.get(`http://localhost:3000/member/profile/${id}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                setMember(res.data.data);
                 setLoading(false);
             } catch (err) {
                 console.error("Error fetching member:", err);
