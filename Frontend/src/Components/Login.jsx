@@ -53,8 +53,10 @@ const Login = () => {
                     autoClose: 2000,
                     position: "top-center"
                 });
-                
-                navigateTo("/admin");
+
+                setTimeout(() => {
+                    navigateTo("/admin");
+                }, 1000);
             } else {
                 toast.error(response.data.message);
             }

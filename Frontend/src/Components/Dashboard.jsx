@@ -1,3 +1,7 @@
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+
 const data = [
     { title: "REGISTERED MEMBERS", value: 150, color: "#009688", icon: "💪", href: "/members" },
     { title: "NEW CONTACT", value: 10, color: "#f44336", icon: "🆕", href: "/message" },
@@ -9,8 +13,31 @@ const data = [
 ];
 
 const Dashboard = () => {
+    const navigate = useNavigate();
+
+    const handleLogout = async () => {
+        try {
+            await axios.get("http://localhost:3000/logout", {
+                withCredentials: true // required if token is in cookies
+            });
+
+            localStorage.removeItem('token'); // If using token-based auth
+            toast.success("Logout Successfully!", {
+                autoClose: 2000,
+                position: "top-center"
+            });
+
+            setTimeout(() => {
+                navigate("/login");
+            }, 1500);
+
+        } catch (error) {
+            console.error("Logout failed", error);
+        }
+    };
     return (
         <div className="dashboard-container">
+            <ToastContainer style={{zIndex:"99999999999999999"}}/>
             <h2>🏋️‍♂️ Gym Dashboard</h2>
             <div className="dashboard-grid">
                 {data.map((item, index) => (
@@ -27,8 +54,12 @@ const Dashboard = () => {
                             <p>{item.title}</p>
                             {/* <h3>{item.value}</h3> */}
                         </div>
+
                     </a>
                 ))}
+                <button className="card-logout" onClick={handleLogout}>
+                    Logout
+                </button>
             </div>
             <br />
             {/* <button style={{backgroundColor:"#69bf34", border: "none", padding :"10px 5px", borderRadius:"10px"}} className="btn-logout">Logout</button> */}

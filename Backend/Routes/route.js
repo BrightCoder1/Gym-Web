@@ -12,7 +12,7 @@ const router = express.Router();
 
 
 router.post("/login", LoginController);
-router.get("/logout",LogoutUser);
+router.get("/logout", LogoutUser);
 router.get("/admin", auth, AdminLogin);
 router.post("/contact", ContactController);
 router.get("/message", auth, MemberController);
@@ -32,8 +32,8 @@ router.post("/new/admin", auth, AdminController);
 router.get("/member/profile/:id", auth, MemberProfile);
 router.get("/member/:id", auth, MemberGet);
 router.delete("/member/delete/:id", auth, MemberDelete);
-router.put("/edit/member/:id", auth, MemberEdit); 
-
-router.put("/members/:id/updatePayment",auth, UpdatePayment);
+router.put("/edit/member/:id", auth, MemberEdit);
+router.get('/logout', auth, LogoutUser);
+router.put("/members/:id/updatePayment", auth, UpdatePayment);
 
 export default router;

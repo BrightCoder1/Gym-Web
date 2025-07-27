@@ -1467,3 +1467,22 @@ button {
 button:hover {
   background-color: #3730a3;
 }
+
+
+.card-logout{
+    background-color: #0e4dc1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+.card-logout{
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.card-logout:hover{
+    background-color: #2a71f4;
+}
