@@ -6,6 +6,7 @@ import { DeleteTrainer, GetTrainer, GetTrainerById, TrainerController, UpdateTra
 import { AdminController, AdminLogin, LoginController } from "../Controller/AdminController.js";
 import { auth } from "../middleware/auth.js";
 import { LogoutUser } from "../Controller/LogoutUser.js";
+import { UpdatePayment } from "../Controller/UpdatePayment.js";
 
 const router = express.Router();
 
@@ -31,6 +32,8 @@ router.post("/new/admin", auth, AdminController);
 router.get("/member/profile/:id", auth, MemberProfile);
 router.get("/member/:id", auth, MemberGet);
 router.delete("/member/delete/:id", auth, MemberDelete);
-router.put("/edit/member/:id", auth, MemberEdit);
+router.put("/edit/member/:id", auth, MemberEdit); 
+
+router.put("/members/:id/updatePayment",auth, UpdatePayment);
 
 export default router;

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const MemberSchema =new mongoose.Schema({
+const MemberSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -16,9 +16,12 @@ const MemberSchema =new mongoose.Schema({
     address: {
         type: String,
         required: true
+    },
+    fess: {
+        type: String
     }
 });
 
-const Member = mongoose.model('Member',MemberSchema);
+const Member = mongoose.model('Member', MemberSchema);
 
 export default Member;

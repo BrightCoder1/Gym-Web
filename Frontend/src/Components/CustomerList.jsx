@@ -73,6 +73,7 @@ const CustomerList = () => {
                         <th>E-Mail</th>
                         <th>Phone</th>
                         <th>Address</th>
+                        <th>Payment</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -85,6 +86,7 @@ const CustomerList = () => {
                                 <td>{cust.email}</td>
                                 <td>{cust.phone}</td>
                                 <td>{cust.address}</td>
+                                <td>{cust.payment ? 'Paid' : 'Pending'}</td>
                                 <td className="actions">
                                     <button title="View">
                                         <a style={{ textDecoration: "none" }} href={`/member/profile/${cust._id}`}>

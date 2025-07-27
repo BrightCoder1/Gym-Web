@@ -23,6 +23,7 @@ import EditTrainer from "./Components/EditTrainer";
 import MemberShow from "./Pages/MemberShow";
 import EditMember from "./Components/EditMember";
 import UserProtectWrapper from "./Pages/UserProtectWrapper";
+import Revenue from "./Pages/Revenue";
 
 const App = () => {
   return (
@@ -114,6 +115,12 @@ const App = () => {
             <EditMember />
           </UserProtectWrapper>
         } />
+        <Route path="/revenue" element={
+          <UserProtectWrapper>
+            <Revenue />
+          </UserProtectWrapper>
+        }
+        />
       </Routes>
       <Footer />
     </>
