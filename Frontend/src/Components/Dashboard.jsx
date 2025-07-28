@@ -18,10 +18,11 @@ const Dashboard = () => {
     const handleLogout = async () => {
         try {
             await axios.get("http://localhost:3000/logout", {
-                withCredentials: true // required if token is in cookies
+                withCredentials: true 
             });
 
-            localStorage.removeItem('token'); // If using token-based auth
+            localStorage.removeItem('token'); 
+
             toast.success("Logout Successfully!", {
                 autoClose: 2000,
                 position: "top-center"
@@ -62,7 +63,6 @@ const Dashboard = () => {
                 </button>
             </div>
             <br />
-            {/* <button style={{backgroundColor:"#69bf34", border: "none", padding :"10px 5px", borderRadius:"10px"}} className="btn-logout">Logout</button> */}
         </div>
     );
 };

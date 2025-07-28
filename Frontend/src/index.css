@@ -1450,26 +1450,26 @@ progress::-webkit-progress-value {
 
 
 input {
-  padding: 6px 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 button {
-  padding: 6px 12px;
-  background-color: #4f46e5;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+    padding: 6px 12px;
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 button:hover {
-  background-color: #3730a3;
+    background-color: #3730a3;
 }
 
 
-.card-logout{
+.card-logout {
     background-color: #0e4dc1;
     display: flex;
     justify-content: center;
@@ -1477,12 +1477,241 @@ button:hover {
     border-radius: 10px;
     transition: 0.3s;
 }
-.card-logout{
+
+.card-logout {
     color: white;
     font-size: 16px;
     text-decoration: none;
 }
 
-.card-logout:hover{
+.card-logout:hover {
     background-color: #2a71f4;
+}
+
+
+/* CustomerList.css */
+.customer-container {
+    padding: 40px 20px;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.breadcrumb {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.top-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.search-input {
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    margin-top: 10px;
+    max-width: 250px;
+    width: 100%;
+}
+
+.new-customer {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 14px;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.new-customer .anchorTag {
+    color: white;
+    text-decoration: none;
+}
+
+.customer-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    background: #fff;
+}
+
+.customer-table th,
+.customer-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.customer-table th {
+    background-color: #f0f0f0;
+}
+
+.actions button,
+.actions a {
+    margin: 0 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+
+/* For Mobile Phone */
+
+@media (max-width: 399px) {
+    .footer-top {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .signup-left {
+        display: none;
+    }
+
+    .dashboard-container {
+        min-height: 80vh;
+    }
+}
+
+
+@media (min-width: 400px) and (max-width: 599px) {
+    .footer-top {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .signup-left {
+        display: none;
+    }
+
+    .dashboard-container {
+        min-height: 80vh;
+    }
+}
+
+
+
+@media (max-width: 767px) {
+    .footer-top {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .signup-left {
+        display: none;
+    }
+
+    .dashboard-container {
+        min-height: 85vh;
+    }
+}
+
+
+@media only screen and (device-width: 320px) {
+    .footer-top {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .signup-left {
+        display: none;
+    }
+
+    .dashboard-container {
+        min-height: 80vh;
+    }
+}
+
+@media only screen and (device-width: 375px) {
+    .footer-top {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .signup-left {
+        display: none;
+    }
+
+    .dashboard-container {
+        min-height: 80vh;
+    }
+}
+
+@media only screen and (device-width: 414px) {
+    .footer-top {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .signup-left {
+        display: none;
+    }
+
+    .dashboard-container {
+        min-height: 80vh;
+    }
+}
+
+
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .customer-table th,
+    .customer-table td {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .center {
+        min-height: 52vh;
+    }
+
+    .new-customer,
+    .search-input {
+        width: 100%;
+    }
+
+    .customer-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .customer-table th,
+    .customer-table td {
+        font-size: 11px;
+    }
+
+    .center {
+        min-height: 52vh;
+    }
+
+    .actions {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
 }
